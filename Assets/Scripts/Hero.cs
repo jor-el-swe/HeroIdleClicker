@@ -1,35 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
     public ScriptableCharacter theHero;
   
-    private int goldCarried;
+    private int _goldCarried;
     
-    private int heroHealth;
-    private int healthUpgradeCost;
-    private float healthUpgradePercentage;
+    private int _heroHealth;
+    private int _healthUpgradeCost;
+    private float _healthUpgradePercentage;
 
-    private float attackPeriodTime;
-    private int attackDamage;
-    private float attackUpgradePercentage;
-    private int attackUpgradeCost;
+    private float _attackPeriodTime;
+    private int _attackDamage;
+    private float _attackUpgradePercentage;
+    private int _attackUpgradeCost;
+
+    private float _attackTimer;
     
     // Start is called before the first frame update
     void Start()
     {
-        goldCarried = theHero.goldCarried;
+        _goldCarried = theHero.goldCarried;
         
-        heroHealth = theHero.characterHealth;
-        healthUpgradeCost = theHero.healthUpgradeCost;
-        healthUpgradePercentage = theHero.healthUpgradePercentage;
+        _heroHealth = theHero.characterHealth;
+        _healthUpgradeCost = theHero.healthUpgradeCost;
+        _healthUpgradePercentage = theHero.healthUpgradePercentage;
         
-        attackPeriodTime = theHero.attackPeriodTime;
-        attackDamage = theHero.attackDamage;
-        attackUpgradeCost = theHero.attackUpgradeCost;
-        attackUpgradePercentage = theHero.attackUpgradePercentage;
+        _attackPeriodTime = theHero.attackPeriodTime;
+        _attackDamage = theHero.attackDamage;
+        _attackUpgradeCost = theHero.attackUpgradeCost;
+        _attackUpgradePercentage = theHero.attackUpgradePercentage;
 
     }
 

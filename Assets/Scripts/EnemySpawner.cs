@@ -11,10 +11,10 @@ public class EnemySpawner : MonoBehaviour
     {
         _enemy = new Enemy
         {
-            goldCarried = scriptedEnemy.goldCarried,
-            enemyHealth = scriptedEnemy.characterHealth,
-            attackPeriodTime = scriptedEnemy.attackPeriodTime,
-            attackDamage = scriptedEnemy.attackDamage
+            GoldCarried = scriptedEnemy.goldCarried,
+            EnemyHealth = scriptedEnemy.characterHealth,
+            AttackPeriodTime = scriptedEnemy.attackPeriodTime,
+            AttackDamage = scriptedEnemy.attackDamage
         };
 
     }
@@ -27,14 +27,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_enemy.enemyHealth <= 0)
+        if (_enemy.EnemyHealth <= 0)
         {
             //do some fancy dying stuff
             
             
             //spawn new enemy
             Debug.Log("new enemy spawned");
-            _enemy.enemyHealth = scriptedEnemy.characterHealth;
+            _enemy.EnemyHealth = scriptedEnemy.characterHealth;
         }
     }
 }
