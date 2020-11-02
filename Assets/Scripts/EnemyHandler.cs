@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemyHandler : MonoBehaviour
 {
     public ScriptableCharacter scriptedEnemy;
 
@@ -36,5 +36,17 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("new enemy spawned");
             _enemy.EnemyHealth = scriptedEnemy.characterHealth;
         }
+    }
+
+    public bool TakeDamage(int attackDamage, ref int goldCarried)
+    {
+        _enemy.EnemyHealth -= attackDamage;
+        if (_enemy.EnemyHealth <= 0)
+        {
+            goldCarried += _enemy.GoldCarried;
+            return true;
+        }
+        
+        return false;
     }
 }

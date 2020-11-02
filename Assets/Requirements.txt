@@ -1,11 +1,12 @@
 ﻿22 GamePlay StartOver:
-   Create a new Scene
+
+ **done**  Create a new Scene
    
-   There is a Hero, that can attack once every 0.6s
+ **done**  There is a Hero, that can attack once every 0.6s
    
-   It has 5 Attack Damage And 100 Life
+ **done**  It has 5 Attack Damage And 100 Life
    
-   An enemy spawns every time, when there is no enemy left
+ **done**  An enemy spawns every time, when there is no enemy left
    
    He attacks every 1.2s, He deals 3 Attack Damage, And has 40 Life
    

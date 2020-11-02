@@ -16,6 +16,8 @@ public class Hero : MonoBehaviour
     private int _attackUpgradeCost;
 
     private float _attackTimer;
+
+    private EnemyHandler _enemyHandler;
     
     // Start is called before the first frame update
     void Start()
@@ -31,11 +33,29 @@ public class Hero : MonoBehaviour
         _attackUpgradeCost = theHero.attackUpgradeCost;
         _attackUpgradePercentage = theHero.attackUpgradePercentage;
 
+
+        _enemyHandler = FindObjectOfType<EnemyHandler>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        _attackTimer += Time.deltaTime;
+
+        if (_attackTimer >= _attackPeriodTime)
+        {
+            Attack();
+            _attackTimer -= _attackPeriodTime;
+        }
+    }
+
+    private void Attack()
+    {
+        Debug.Log($"hero attacks! dmg:{_attackDamage} health: {_heroHealth}");
+        if(_enemyHandler.TakeDamage(_attackDamage, ref _goldCarried))
+        {
+            Debug.Log("killed enemy!");
+        }
     }
 }
