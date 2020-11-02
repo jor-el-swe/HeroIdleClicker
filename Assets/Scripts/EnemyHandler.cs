@@ -6,7 +6,8 @@ public class EnemyHandler : MonoBehaviour
     public ScriptableCharacter scriptedEnemy;
 
     private Enemy _enemy;
-    // Start is called before the first frame update
+    private float _attackTimer;
+    private Hero _hero;
     void Start()
     {
         _enemy = new Enemy
@@ -17,12 +18,27 @@ public class EnemyHandler : MonoBehaviour
             AttackDamage = scriptedEnemy.attackDamage
         };
 
+        _hero = FindObjectOfType<Hero>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        _attackTimer += Time.deltaTime;
+
+        if (_attackTimer >= _enemy.AttackPeriodTime)
+        {
+            Attack();
+            _attackTimer -= _enemy.AttackPeriodTime;
+        }
+    }
+
+    private void Attack()
+    {
+        if (_hero.IsDead) return;
+        Debug.Log($"enemy attacks! dmg:{_enemy.AttackDamage} health: {_enemy.EnemyHealth}");
+        _hero.TakeDamage(_enemy.AttackDamage);
     }
 
     private void FixedUpdate()

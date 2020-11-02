@@ -3,7 +3,9 @@
 public class Hero : MonoBehaviour
 {
     public ScriptableCharacter theHero;
-  
+
+    public bool IsDead { get; private set; } = false;
+
     private int _goldCarried;
     
     private int _heroHealth;
@@ -41,12 +43,14 @@ public class Hero : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (IsDead) return;
+        
         _attackTimer += Time.deltaTime;
 
         if (_attackTimer >= _attackPeriodTime)
         {
-            Attack();
             _attackTimer -= _attackPeriodTime;
+            Attack();
         }
     }
 
@@ -56,6 +60,15 @@ public class Hero : MonoBehaviour
         if(_enemyHandler.TakeDamage(_attackDamage, ref _goldCarried))
         {
             Debug.Log("killed enemy!");
+            Debug.Log($"hero gold: {_goldCarried}");
         }
+    }
+
+    public void TakeDamage(int enemyAttackDamage)
+    {
+        _heroHealth -= enemyAttackDamage;
+        IsDead = _heroHealth <= 0;
+        Debug.Log($"hero health: {_heroHealth}");
+        if(IsDead) Debug.Log("hero died!");
     }
 }
