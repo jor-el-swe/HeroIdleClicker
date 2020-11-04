@@ -7,15 +7,11 @@ public class Hero : MonoBehaviour
     public bool IsDead { get; private set; } = false;
 
     private int _goldCarried;
-    
     private int _heroHealth;
-    private int _healthUpgradeCost;
-    private float _healthUpgradePercentage;
-
+    
     private float _attackPeriodTime;
     private int _attackDamage;
-    private float _attackUpgradePercentage;
-    private int _attackUpgradeCost;
+
 
     private float _attackTimer;
 
@@ -27,14 +23,9 @@ public class Hero : MonoBehaviour
         _goldCarried = theHero.goldCarried;
         
         _heroHealth = theHero.characterHealth;
-        _healthUpgradeCost = theHero.healthUpgradeCost;
-        _healthUpgradePercentage = theHero.healthUpgradePercentage;
         
         _attackPeriodTime = theHero.attackPeriodTime;
         _attackDamage = theHero.attackDamage;
-        _attackUpgradeCost = theHero.attackUpgradeCost;
-        _attackUpgradePercentage = theHero.attackUpgradePercentage;
-
 
         _enemyHandler = FindObjectOfType<EnemyHandler>();
 
