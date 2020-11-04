@@ -8,9 +8,9 @@
    
  **done**  An enemy spawns every time, when there is no enemy left
    
-  **done** He attacks every 1.2s, He deals 3 Attack Damage, And has 40 Life
+ **done** He attacks every 1.2s, He deals 3 Attack Damage, And has 40 Life
    
-  **done** When he is killed, he grants the Hero 7 Gold
+ **done** When he is killed, he grants the Hero 7 Gold
    
 
    The Hero can upgrade his Health and MaxHealth (together) by 10% for 50 Gold. Repeatable.

@@ -1,23 +1,15 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyHandler : MonoBehaviour
 {
     public ScriptableCharacter scriptedEnemy;
 
-    private Enemy _enemy;
+    private float _enemyHealth;
     private float _attackTimer;
     private Hero _hero;
     void Start()
     {
-        _enemy = new Enemy
-        {
-            GoldCarried = scriptedEnemy.goldCarried,
-            EnemyHealth = scriptedEnemy.characterHealth,
-            AttackPeriodTime = scriptedEnemy.attackPeriodTime,
-            AttackDamage = scriptedEnemy.attackDamage
-        };
-
+        _enemyHealth = scriptedEnemy.characterHealth;
         _hero = FindObjectOfType<Hero>();
 
     }
@@ -27,39 +19,39 @@ public class EnemyHandler : MonoBehaviour
     {
         _attackTimer += Time.deltaTime;
 
-        if (_attackTimer >= _enemy.AttackPeriodTime)
+        if (_attackTimer >= scriptedEnemy.attackPeriodTime)
         {
             Attack();
-            _attackTimer -= _enemy.AttackPeriodTime;
+            _attackTimer -= scriptedEnemy.attackPeriodTime;
         }
     }
 
     private void Attack()
     {
         if (_hero.IsDead) return;
-        Debug.Log($"enemy attacks! dmg:{_enemy.AttackDamage} health: {_enemy.EnemyHealth}");
-        _hero.TakeDamage(_enemy.AttackDamage);
+        Debug.Log($"enemy attacks! dmg:{scriptedEnemy.attackDamage} health: {_enemyHealth}");
+        _hero.TakeDamage(scriptedEnemy.attackDamage);
     }
 
     private void FixedUpdate()
     {
-        if (_enemy.EnemyHealth <= 0)
+        if (_enemyHealth <= 0)
         {
             //do some fancy dying stuff
             
             
             //spawn new enemy
             Debug.Log("new enemy spawned");
-            _enemy.EnemyHealth = scriptedEnemy.characterHealth;
+            _enemyHealth = scriptedEnemy.characterHealth;
         }
     }
 
     public bool TakeDamage(int attackDamage, ref int goldCarried)
     {
-        _enemy.EnemyHealth -= attackDamage;
-        if (_enemy.EnemyHealth <= 0)
+        _enemyHealth -= attackDamage;
+        if (_enemyHealth <= 0)
         {
-            goldCarried += _enemy.GoldCarried;
+            goldCarried += scriptedEnemy.goldCarried;
             return true;
         }
         
